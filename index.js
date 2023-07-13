@@ -12,7 +12,7 @@ const loginUser = (email, password) => {
 const getUserVideos = (email) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log('Get User Videos')
+      console.log("Get User Videos");
       resolve(["Video01", "Video02", "Video03"]);
     }, 1500);
   });
@@ -21,12 +21,12 @@ const getUserVideos = (email) => {
 const getVideoDetails = (video, callback) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log("Get Video Detail")
+      console.log("Get Video Detail");
       resolve({ title: "Video title" });
     }, 2000);
   });
 };
-
+/*
 loginUser("ricardo@gmail.com", "12345")
   .then((user) => getUserVideos(user.email))
   .then((videos) => getVideoDetails(videos[0]))
@@ -34,3 +34,22 @@ loginUser("ricardo@gmail.com", "12345")
   .catch((error) => {
     console.log(error);
   });
+*/
+
+// Promisses.all()
+
+const yt = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("Get videos from youtube");
+  }, 2500);
+});
+
+const fb = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("Get videos from facebook");
+  });
+});
+
+Promise.all([yt, fb]).then((result) => {
+  console.log({ result });
+});
