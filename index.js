@@ -1,24 +1,36 @@
-const loginUser = (email, password, onSuccess, onError) => {
-  setTimeout(() => {
-
+const loginUser = (email, password) => {
+  return new Promise((resolve, reject) => {
     const error = false;
-
-    if(error)
-    {
-        return onError(new Error('Error in login'));
+    if (error) {
+      reject(new Error("Error in login"));
     }
-
-    console.log(`Usuario logado`);
-    onSuccess({ email });
-
-  }, 1500);
-  console.log("After setTimeout");
+    console.log("User logged!");
+    resolve({ email });
+  });
 };
 
-const user = loginUser("ricardo@gmail.com", "1234567", (user) => {
-    console.log(user)
-}, (error) =>{
-    console.log(error)
-});
+const getUserVideos = (email) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('Get User Videos')
+      resolve(["Video01", "Video02", "Video03"]);
+    }, 1500);
+  });
+};
 
-console.log({ user });
+const getVideoDetails = (video, callback) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log("Get Video Detail")
+      resolve({ title: "Video title" });
+    }, 2000);
+  });
+};
+
+loginUser("ricardo@gmail.com", "12345")
+  .then((user) => getUserVideos(user.email))
+  .then((videos) => getVideoDetails(videos[0]))
+  .then((videoDetail) => console.log({videoDetail}))
+  .catch((error) => {
+    console.log(error);
+  });
