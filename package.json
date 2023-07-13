@@ -4,11 +4,14 @@
   "description": "The assynchronous events",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon ."
   },
   "author": "Ricardo Castle",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
   }
 }
